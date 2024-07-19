@@ -6,7 +6,12 @@ int main() {
         std::cout << "Error" << SDL_GetError();
     }
     else{
-        std::cout << "Hello, World!" << std::endl;
+        SDL_Window* window = SDL_CreateWindow("Testing Window", 0, 0, 800, 600, SDL_WINDOW_SHOWN);
+        SDL_Delay(5000);
+        SDL_DestroyWindow(window);
     }
+
+    SDL_Quit();
+    
     return 0;
 }
