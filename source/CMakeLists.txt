@@ -5,6 +5,7 @@ set(SourceFiles
     main.cpp)
 
 find_package(SDL2 REQUIRED)
+
 include_directories(${SDL2_INCLUDE_DIRS})
 
 add_executable(${PROJECT_NAME} ${SourceFiles})
