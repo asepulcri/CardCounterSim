@@ -1,24 +1,24 @@
 #include <SDL2/SDL.h>
+#include <stdio.h>
 #include <iostream>
-#include "include/card.h"
+#include "card.h"
+#include "game.h"
 
-int main() {
-    if(SDL_Init(SDL_INIT_VIDEO) != 0) {
-        std::cout << "Error" << SDL_GetError();
+game *ccs = nullptr;
+
+int main(int argc, char* argv[]) {
+    
+    ccs = new game();
+
+    ccs->init("Card Counter Simulator", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, false);
+
+    while(ccs->running()){
+        ccs->handleEvents();
+        ccs->update();
+        ccs->render();
     }
-    else{
-        SDL_Window* window = SDL_CreateWindow("Testing Window", 0, 0, 800, 600, SDL_WINDOW_SHOWN);
-        SDL_Delay(1000);
-        SDL_DestroyWindow(window);
-    }
 
-    SDL_Quit();
-
-    card testCard(rank::ace, suit::clubs);
-
-    shoe testShoe(int(3));
-
-    testShoe.shuffleShoe();
+    ccs->clean();
 
     return 0;
 }
