@@ -2,12 +2,16 @@ cmake_minimum_required(VERSION 3.5)
 project(CardCounterSim)
 
 set(HeaderFiles
-    include/card.h
-    include/game.h)
+    include/Card.h
+    include/Game.h
+    include/TextureManager.h
+    include/GameObject.h)
 
 set(SourceFiles
-    game.cpp
-    main.cpp)
+    source/Game.cpp
+    source/TextureManager.cpp
+    source/GameObject.cpp
+    source/main.cpp)
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
 

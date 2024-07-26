@@ -26,12 +26,12 @@ enum suit {
     spades = 3
 };
  
-class card {
+class Card {
     public:
         rank m_rank;
         suit m_suit;
 
-        card(rank rank, suit suit) {
+        Card(rank rank, suit suit) {
             m_rank = rank;
             m_suit = suit;
         }
@@ -40,12 +40,12 @@ class card {
         const suit getSuit() {return m_suit;};
 };
 
-class shoe {
+class Shoe {
     public:
-        shoe(int size) {
+        Shoe(int size) {
             for (int i = 0; i < size; i++){
                 for (int j = 0; j < 52; j++) {
-                    cards.push_back(std::make_unique<card>(rank((j % 13) + 1), suit(j / 13)));
+                    Cards.push_back(std::make_unique<Card>(rank((j % 13) + 1), suit(j / 13)));
                 }
             }
         }
@@ -53,19 +53,19 @@ class shoe {
         void shuffleShoe() {
             std::random_device rd;
             std::mt19937 generator(rd());
-            std::shuffle(cards.begin(), cards.end(), generator);
+            std::shuffle(Cards.begin(), Cards.end(), generator);
         };
 
-        std::unique_ptr<card> drawCard() {
-            if(cards.empty()) {
+        std::unique_ptr<Card> drawCard() {
+            if(Cards.empty()) {
                 return nullptr;
             }
 
-            std::unique_ptr<card> drawnCard = std::move(cards.back());
-            cards.pop_back();
+            std::unique_ptr<Card> drawnCard = std::move(Cards.back());
+            Cards.pop_back();
 
             return drawnCard;
         }
     private:
-        std::vector<std::unique_ptr<card>> cards;
+        std::vector<std::unique_ptr<Card>> Cards;
 };
