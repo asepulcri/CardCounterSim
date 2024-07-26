@@ -1,5 +1,8 @@
 #include "game.h"
 
+SDL_Texture *aceOfSpades;
+SDL_Rect srcR, destR;
+
 game::game() {
 
 }
@@ -37,6 +40,21 @@ void game::init(const char* title, int xpos, int ypos, int width, int height, bo
     else {
         isRunning = false;
     }
+
+    int imgFlags = IMG_INIT_JPG;
+
+    if( !( IMG_Init( imgFlags ) && imgFlags ) ) {
+        std::cout << "SDL_image could not initialize! SDL_image Error:" << IMG_GetError() << std::endl;
+    }
+
+    SDL_Surface *tmpSurface = IMG_Load("../assets/Ace_of_spades.png");
+
+    std::cout << IMG_GetError() << std::endl;
+
+    aceOfSpades = SDL_CreateTextureFromSurface(renderer, tmpSurface);
+    
+    SDL_FreeSurface(tmpSurface);
+
 }
 
 void game::handleEvents() {
@@ -56,12 +74,12 @@ void game::handleEvents() {
 }
 
 void game::update() {
-    counter++;
-    std::cout << counter << std::endl;
 }
 
 void game::render() {
     SDL_RenderClear(renderer);
+
+    SDL_RenderCopy(renderer, aceOfSpades, NULL, NULL);
     
     // add to renderer
     SDL_RenderPresent(renderer);
