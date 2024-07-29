@@ -5,12 +5,14 @@ set(HeaderFiles
     include/Card.h
     include/Game.h
     include/TextureManager.h
-    include/GameObject.h)
+    include/GameObject.h
+    include/Button.h)
 
 set(SourceFiles
     source/Game.cpp
     source/TextureManager.cpp
     source/GameObject.cpp
+    source/Button.cpp
     source/main.cpp)
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")

@@ -1,8 +1,8 @@
 #include "Game.h"
 #include "TextureManager.h"
+#include "GameObject.h"
 
-SDL_Texture *aceOfSpades;
-SDL_Rect srcR, destR;
+GameObject *player;
 
 Game::Game() {
 
@@ -36,7 +36,7 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
         isRunning = false;
     }
 
-    aceOfSpades = TextureManager::LoadTexture("../assets/Ace_of_spades.png", renderer);
+    player = new GameObject("../assets/Ace_of_spades.png", renderer);
 
 }
 
@@ -57,14 +57,13 @@ void Game::handleEvents() {
 }
 
 void Game::update() {
-    destR.h = 186;
-    destR.w = 128;
+    player->update();
 }
 
 void Game::render() {
     SDL_RenderClear(renderer);
 
-    SDL_RenderCopy(renderer, aceOfSpades, NULL, &destR);
+    player->render();
     
     SDL_RenderPresent(renderer);
 }
